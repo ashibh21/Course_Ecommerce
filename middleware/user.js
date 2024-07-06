@@ -1,3 +1,5 @@
-function adminMiddleware(req, res, next) {}
+function userMiddleware(req, res, next) {
+    
+}
 
-module.exports = adminMiddleware;
+module.exports = userMiddleware;
