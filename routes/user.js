@@ -49,7 +49,7 @@ router.get("/courses", async (req, res) => {
 
 router.post("/courses/:courseId", userMiddleware, async (req, res) => {
   const courseId = req.params.courseId;
-  const username = req.headers.username;
+  const username = req.username;
 
   await User.updateOne(
     {
@@ -66,7 +66,8 @@ router.post("/courses/:courseId", userMiddleware, async (req, res) => {
   });
 });
 router.get("/purchasedCourses", userMiddleware, async (req, res) => {
-  const username = req.headers.username;
+  const username = req.username;
+  
   const response = await User.findOne({
     username,
   });
