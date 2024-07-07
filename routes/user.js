@@ -18,6 +18,28 @@ router.post("/signup", async (req, res) => {
   });
 });
 
+router.post("/signin", async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  const user = User.find({
+    username,
+    password,
+  });
+  if (user) {
+    const token = jwt.sign(
+      {
+        username,
+      },
+      JWT_SECRET
+    );
+    res.json({
+      token,
+    });
+  } else {
+    res.status(403).json("User do not exist");
+  }
+});
+
 router.get("/courses", async (req, res) => {
   const response = await Course.find({});
   res.json({
